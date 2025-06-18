@@ -18,19 +18,6 @@ const upload = multer({ storage: storage });
 router.get("/detail",usercreate);
 router.post("/detail",usercreate);
 
-router.put('/api/cart/:id', async (req, res) => {
-  try {
-    const { quantity } = req.body;
-    const updatedItem = await Cart.findByIdAndUpdate(
-      req.params.id,
-      { quantity },
-      { new: true }
-    );
-    res.status(200).json(updatedItem);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 // Remove item from cart
 router.delete('/api/cart/:id', async (req, res) => {
@@ -41,16 +28,9 @@ router.delete('/api/cart/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-// router.delete('/api/cart/:id', async (req, res) => {
-//   try {
-//     await Cart.findByIdAndDelete(req.params.id);
-//     res.status(200).json({ message: 'Item removed from cart' });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
 
-router.post('/api/cart/add',upload.single("image"),Send);
+
+router.post('/api/cart/add',Send);
 router.get('/api/cart/all',Sendt);
 
 router.get('/api/cart/:userId', async (req, res) => {
