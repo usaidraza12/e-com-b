@@ -30,12 +30,12 @@ router.delete('/api/cart/:id', async (req, res) => {
 });
 
 
-router.post('/api/cart/add',Send);
-router.get('/api/cart/all',Sendt);
+router.post('/api/cart/add',auth,Send);
+router.get('/api/cart/all',auth,Sendt);
 
 router.get('/api/cart/:userId', async (req, res) => {
   try {
-    const cartItems = await Cart.find({ userId: req.params.userId });
+    const cartItems = await Chart.find({ userId: req.params.userId });
     res.status(200).json(cartItems);
   } catch (error) {
     res.status(500).json({ error: error.message });

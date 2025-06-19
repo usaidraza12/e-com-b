@@ -17,6 +17,9 @@ async function Send(req,res) {
     if (cartItem) {
       // Update quantity if item exists
       cartItem.quantity += quantity;
+    res.status(200).json({message:"okk"});
+
+
     } else {
       // Create new cart item
       cartItem = await Chart.create({
@@ -26,8 +29,9 @@ async function Send(req,res) {
        quantity,
        userId,
       });
-    }
     res.status(200).json({message:"okk"});
+
+    }
    
 }
 
