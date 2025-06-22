@@ -1,26 +1,23 @@
 
-const Chartitem = require("../module/itemchart");
 const Chart =require("../module/models/Cart")
 
 async function Send(req,res) {
   
-     const body = req.body;
-
-     const name=body.name;
-     const price=body.price;
-     const image= body.image;
-     const quantity=body.quantity;
-     const userId=body.userId;
+     const {name,price,image,quantity,userId}= req.body;
     
-   let cartItem = await Chart.findOne({name,price});
+   let cartItem = await Chart.findOne({
+    name:name,
+    userId:userId,
+   });
     
     if (cartItem) {
+       cartItem.quantity += quantity;
+         res.status(201).json({message:"add"});
       // Update quantity if item exists
-      cartItem.quantity += quantity;
-    res.status(200).json({message:"okk"});
 
 
-    } else {
+    }
+
       // Create new cart item
       cartItem = await Chart.create({
       name,
@@ -31,7 +28,6 @@ async function Send(req,res) {
       });
     res.status(200).json({message:"okk"});
 
-    }
    
 }
 
@@ -70,7 +66,23 @@ async function Send(req,res) {
 //     res.status(500).json({ error: "Something went wrong" });
 //   }
 // }
-async function Sendt(req,res) {
+// async function Sendt(req,res) {
+//   const { userId } = req.query;
+
+//   if (!userId) {
+//     return res.status(400).json({ message: 'userId is required' });
+//   }
+
+//   try {
+//     const cartItems = await Chart.findOne({userId});
+//     res.status(200).json({cartItems});
+//   } catch (error) {
+//     console.error('Error fetching cart:', error);
+//     res.status(200).json({ message: 'continue' });
+//   }
+
+// }
+async function Sendt(req, res) {
   const { userId } = req.query;
 
   if (!userId) {
@@ -78,14 +90,13 @@ async function Sendt(req,res) {
   }
 
   try {
-    const cartItems = await Chart.find({ userId });
-    res.status(200).json(cartItems);
+    const cartItems = await Chart.find({ userId }); // ✅ find() not findOne()
+    res.status(200).json({ cartItems }); // ✅ Key matches frontend use
   } catch (error) {
     console.error('Error fetching cart:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Server error' }); // ✅ Use 500
   }
 }
-
 
 module.exports={
     Send,

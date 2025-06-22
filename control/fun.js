@@ -39,7 +39,7 @@ async function usercreate(req, res) {
   if (!email || !password || !name) {
     return res.status(400).json({ message: "Email, name, or password required" });
   }
-
+else if(email || password || name){
   try {
     // Check if user already exists by email only
     const existingUser = await User.findOne({ email });
@@ -64,49 +64,35 @@ async function usercreate(req, res) {
     console.error("Error creating user:", err);
 
     // Handle duplicate key error if schema has unique constraint
-    if (err.code === 11000) {
-      return res.status(400).json({ message: "Email already in use" });
-    }
 
     return res.status(500).json({ message: "Internal server error" });
   }
 }
 
-    // function usercheck(req,res){
-    //   const {email,password}= req.body
-    
-    //  if(email){
-    //   const user = User.findOne({
-    //     email,
-    //     password,
-    //   })
-    //   if(!user){
-    //     res.status(200).json({ success: false, message: 'no user' });
-
-    //   } 
-    //   const sesionid=uuidv4() 
-
-    //  sign(sesionid,user._conditions)
-    //  console.log()
-    //   res.cookie('uid',sesionid);
-      
-    //  }
-       
-       
-    //   }
+}
     async function usercheck(req, res) {
       const { email, password } = req.body;
+    
+
       if (!email || !password) {
         return res.status(400).json({ message:"email or passord required" });
       }
+      else if(email || password){
       const user = await User.findOne({email}); // NOTE: plaintext password — not secure!
       const mypass= await bcrypt.compare(password,user.password);
-      if (!user && !mypass) {
+      
+if (!mypass) {
+        
+
         return res.status(401).json({ success: false,});
-      }else{
+      }else if(mypass){
+      
+
         const token=sign(user)
         res.status(200).json({token,user});
       }
+      }
+      
     }
 
 
