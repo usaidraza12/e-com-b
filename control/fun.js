@@ -58,7 +58,7 @@ else if(email || password || name){
       password: hash
     });
 
-    return res.status(201).json({ message: "User created successfully", user: newUser });
+    return res.status(201).json({newUser});
 
   } catch (err) {
     console.error("Error creating user:", err);
