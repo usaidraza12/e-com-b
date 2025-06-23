@@ -16,7 +16,7 @@ const path = require("path");
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors({
-  origin: ['https://render-2-uimr.onrender.com'],
+  origin: ['http://localhost:5173','http://localhost:5174',"https://e-com-frontend-bvlmyujuc-usaidraza12s-projects.vercel.app/"],
   credentials: true
 }))
 app.use(cookieParser())
