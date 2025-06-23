@@ -11,7 +11,7 @@ const usercontrol2 = require("../control/control-router")
 const Chartitem=require("../module/itemchart");
 const Chart=require("../module/models/Cart");
 
-router.get("/detail",usercreate);
+// router.get("/detail",usercreate);
 router.post("/detail",usercreate);
 
 // Remove item from cart
