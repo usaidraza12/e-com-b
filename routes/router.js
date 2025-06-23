@@ -25,7 +25,7 @@ router.delete('/api/cart/:id', async (req, res) => {
 });
 
 router.post('/api/cart/add',auth,Send);
-router.get('/api/cart/all',Sendt);
+router.get('/api/cart/all',auth,Sendt);
 
 // router.get("/login",usercheck);
 router.post("/login",usercheck);

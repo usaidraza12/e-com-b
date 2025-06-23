@@ -89,7 +89,7 @@ if (!mypass) {
       
 
         const token=sign(user)
-        res.status(200).json({token,user});
+       return res.status(200).json({token,user});
       }
       }
       
