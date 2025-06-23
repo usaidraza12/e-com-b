@@ -16,7 +16,7 @@ const path = require("path");
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors({
-  origin: ['http://localhost:5173','http://localhost:5174'],
+  origin: ['https://render-2-uimr.onrender.com'],
   credentials: true
 }))
 app.use(cookieParser())
