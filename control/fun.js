@@ -84,7 +84,7 @@ else if(email || password || name){
 if (!mypass) {
         
 
-        return res.status(401).json({ success: false,});
+        return res.status(401).json({ message:"invalid info"});
       }else if(mypass){
       
 
