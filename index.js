@@ -12,8 +12,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, "./client/build")));
 
+app.use(express.static(path.join(__dirname, "client/build")));
+
+// ✅ This must be AFTER all other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 
 
 // Static folder serve

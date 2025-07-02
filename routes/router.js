@@ -10,7 +10,6 @@ const {Send,Sendt}= require('../control/chart')
 const usercontrol2 = require("../control/control-router")
 const Chartitem=require("../module/itemchart");
 const Chart=require("../module/models/Cart");
-const path =require("path")
 
 // router.get("/detail",usercreate);
 router.post("/detail",usercreate);
@@ -36,9 +35,4 @@ router.get('/services',auth,userproduct);
 
 router.get("/auth",auth);
 router.post("/auth",auth);
-
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
 module.exports=router
