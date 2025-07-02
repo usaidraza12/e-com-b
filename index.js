@@ -2,6 +2,7 @@ const express= require("express");
 const userouter= require("./routes/router")
 const cors= require("cors")
 const app=express();
+// const connectDB= require('')
 const connectDB= require('./module/db')
 const mongoose= require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -11,10 +12,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 // Static folder serve
 // app.use('./uploads', express.static(path.join(__dirname, 'image')));
