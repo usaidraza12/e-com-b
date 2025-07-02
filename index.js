@@ -14,9 +14,8 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
-});
+
+
 // Static folder serve
 // app.use('./uploads', express.static(path.join(__dirname, 'image')));
 // index.js ya app.js
