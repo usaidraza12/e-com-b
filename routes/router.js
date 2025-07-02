@@ -13,10 +13,6 @@ const Chart=require("../module/models/Cart");
 
 // router.get("/detail",usercreate);
 router.post("/detail",usercreate);
-router.get("/",(req,res)=>{
-  return res.json("hello")
-});
-
 // Remove item from cart
 router.delete('/api/cart/:id', async (req, res) => {
   try {

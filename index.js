@@ -7,11 +7,15 @@ const mongoose= require("mongoose");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 8001;
 const dotenv = require('dotenv');
-const path = require("path");
-
 
 dotenv.config();
+const path = require("path");
 
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 // Static folder serve
 // app.use('./uploads', express.static(path.join(__dirname, 'image')));
 // index.js ya app.js
